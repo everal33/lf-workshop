@@ -1,0 +1,7 @@
+target C
+main reactor {
+    reaction(startup){=
+        lf_print("hello_world");  // new syntax
+        printf("Hello, World! by C");
+    =}
+}
