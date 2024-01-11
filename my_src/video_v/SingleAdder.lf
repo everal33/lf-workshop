@@ -1,0 +1,34 @@
+target Cpp;
+
+reactor Counter(stride: int(1), period: time(1 sec)) {
+    state count: int(0);
+    timer t(0,period);
+    output out: int;
+    reaction(t) -> out {=
+        out.set(count);bin  
+        count += stride;
+    =}
+}
+
+reactor Adder(value: int(1)) {
+    input in: int;
+    output out: int;
+    reaction (in) -> out {=
+        out.set(*in.get() + value);
+    =}
+}
+
+reactor Printer {
+    input in:int;
+    reaction(in) {=
+        reactor::log::Info() << "Result: " << *in.get();
+    =}
+}
+
+main reactor(stride: int(10), period: time(1 sec)) {
+    c = new Counter(stride=stride, period=period);
+    a = new Adder(value=1);
+    p = new Printer();
+    c.out -> a.in;
+    a.out -> p.in;
+}
