@@ -5,7 +5,7 @@ reactor Counter(stride: int(1), period: time(1 sec)) {
     timer t(0,period);
     output out: int;
     reaction(t) -> out {=
-        out.set(count);bin  
+        out.set(count);
         count += stride;
     =}
 }

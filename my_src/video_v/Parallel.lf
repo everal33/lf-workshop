@@ -1,6 +1,6 @@
 target C {
     timeout: 2 sec,
-    workers: 4 // change to 4 to see speed up
+    //workers: 4 // change to 4 to see speed up
 }
 
 reactor Source {
